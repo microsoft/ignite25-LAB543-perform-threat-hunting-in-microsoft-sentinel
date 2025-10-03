@@ -22,6 +22,8 @@ You're a Security Operations Analyst working at a company that implemented Micro
 
 ### Estimated time to complete this lab: 45 - 60 minutes
 
+>**Note:** The following *Prerequisite tasks* Are pre-configured for you. They are included here for your information only.
+
 ### Prerequisite task 1: Connect an On-Premises Server
 
 In this task, you'll connect an on-premises server to your Azure subscription. Azure Arc was pre-installed on this server. The server will be used in next exercises to run simulated attacks that you will later detect and investigate in Microsoft Sentinel.
@@ -209,23 +211,23 @@ In this task, you'll create a hunting query, and create a Livestream.
     | order by count_ desc nulls last 
     ```
 
-1. Select the **Run query** button.
+1. Select **Run query** from the command bar.
 
 1. Review the different results. You have now identified PowerShell requests that are running in your environment.
 
 1. Select the checkbox of the results that shows the *"-file c2.ps1"*.
 
-<!--- 1. In the *Results* pane command bar, select the **Add bookmark** button.
-
-1. Select **+ Add new entity** under *Entity mapping*.
-
-1. For *Entity* select **Host**, then **Hostname** and **Computer** for the values.
-
-1. For *Tactics and Techniques*, select **Command and Control**.
-
-1. In the *Add bookmark* blade, select **Create**. We will map this bookmark to an incident later. 
-
-1. Close the *Logs* window by selecting the **X** in the top-right of the window and select **OK** to discard the changes. --->
+    <!---1. In the *Results* pane command bar, select the **Add bookmark** button.
+    
+    1. Select **+ Add new entity** under *Entity mapping*.
+    
+    1. For *Entity* select **Host**, then **Hostname** and **Computer** for the values.
+    
+    1. For *Tactics and Techniques*, select **Command and Control**.
+    
+    1. In the *Add bookmark* blade, select **Create**. We will map this bookmark to an incident later. 
+    
+    1. Close the *Logs* window by selecting the **X** in the top-right of the window and select **OK** to discard the changes. --->
 
 1. Return to the *Microsoft Sentinel* section of the Defender portal, and select the **Hunting** page under the *Threat Management* area.
 
