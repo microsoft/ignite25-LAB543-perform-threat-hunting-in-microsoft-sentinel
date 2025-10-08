@@ -77,21 +77,22 @@ Send them to [Mike Kinsman](mailto:mikki@microsoft.com) and [Laurent Bugnion](lb
 
 ### Session Description
 
-*Add Session Description*
+You're a Security Operations Analyst working at a company that is implementing Microsoft Sentinel. You're responsible for performing log data analysis to search for malicious activity, display visualizations, and perform threat hunting. To query log data, you use the Kusto Query Language (KQL)
 
 ### 🧠 Learning Outcomes
 
 By the end of this session, learners will be able to:
 
--  
--
--
+- Hunt for threats using Microsoft Sentinel Advanced Hunting
+- Ingest and analyze data in Sentinel Data Lake
+- Utilize Kusto Query Language (KQL) for querying data
 
 ### 💻 Technologies Used
 
-1.
-1.
-1.
+1. Microsoft Sentinel
+1. Microsoft Defender XDR
+1. Sentinel Data Lake
+1. Kusto Query Language (KQL)
 
 ### 🌟 Microsoft Learn MCP Server
 
