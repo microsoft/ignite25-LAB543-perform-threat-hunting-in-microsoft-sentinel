@@ -18,10 +18,12 @@ You're a Security Operations Analyst working at a company that is implementing M
 
 By the end of this session, learners will be able to:
 
-- Hunt for threats using Microsoft Sentinel Advanced Hunting
-- Utilize Kusto Query Language (KQL) for querying data
 - Ingest and analyze data in Sentinel Data Lake with Kusto Query Language (KQL)
-- 
+- Hunt for threats using Microsoft Sentinel Advanced Hunting
+- Hunt for threats using Data lake graph
+- Hunt for threats using MITRE ATT&CK
+- Ingest and analyze data in Sentinel Data Lake with Kusto Query Language (KQL)
+- Use KQL jobs to analyze large datasets in Sentinel Data Lake
 
 ### 💻 Technologies Used
 
@@ -65,7 +67,6 @@ For more information, setup instructions for other dev clients, and to post comm
             <a href="https://github.com/KenMAG" title="talk">📢</a>
     </td>
 </tr></table>
-
 
 ## Contributing
 
