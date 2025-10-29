@@ -1,10 +1,10 @@
 ---
 lab:
-    title: 'Exercise 1 - Perform Threat Hunting in Microsoft Sentinel'
+    title: 'Exercise 1 - Perform Threat Hunting with Microsoft Sentinel in the Microsoft Defender portal'
     module: 'Learning Path 10 - Perform threat hunting in Microsoft Sentinel'
 ---
 
-# Learning Path 10 - Lab 1 - Exercise 1 - Perform Threat Hunting in Microsoft Sentinel
+# Learning Path 10 - Lab 1 - Exercise 1 - Perform Threat Hunting with Microsoft Sentinel in the Microsoft Defender portal
 
 ## Lab scenario
 
@@ -206,28 +206,81 @@ In this task, you'll create a hunting query, and create a Livestream.
     | where TimeGenerated >= ago(lookback) 
     | where EventID == 4688 and Process =~ "powershell.exe"
     | extend PwshParam = trim(@"[^/\\]*powershell(.exe)+" , CommandLine) 
-    | project TimeGenerated, Computer, SubjectUserName, PwshParam 
-    | summarize min(TimeGenerated), count() by Computer, SubjectUserName, PwshParam 
-    | order by count_ desc nulls last 
+    | project TimeGenerated, Computer, SubjectUserName, PwshParam    
     ```
 
 1. Select **Run query** from the command bar.
 
 1. Review the different results. You have now identified PowerShell requests that are running in your environment.
 
-1. Select the checkbox of the results that shows the *"-file c2.ps1"*.
+1. Select the checkbox of the results that shows the *"-file c2.ps1"* in the *PwshParam* column.
 
-    <!---1. In the *Results* pane command bar, select the **Add bookmark** button.
-    
-    1. Select **+ Add new entity** under *Entity mapping*.
-    
-    1. For *Entity* select **Host**, then **Hostname** and **Computer** for the values.
-    
-    1. For *Tactics and Techniques*, select **Command and Control**.
-    
-    1. In the *Add bookmark* blade, select **Create**. We will map this bookmark to an incident later. 
-    
-    1. Close the *Logs* window by selecting the **X** in the top-right of the window and select **OK** to discard the changes. --->
+1. In the *Results* pane command bar, select the **Link to incident** icon.
+
+1. In the *Link to incident* pane, leave the **Create new incident** radio button selected.
+
+1. Fill in the following fields:
+
+    |Setting|Value|
+    |---|---|
+    |Alert title|**PowerShell C2 Hunt**|
+    |Severity|**High**|
+    |Category|**Command and Control**|
+    |MITRE techniques|**T1094: Custom Command and Control Protocol**|
+    |Description|**PowerShell C2 Hunt results**|
+    |Recommended actions|**Perform incident remediation**|
+
+1. Select **Next**.
+
+1. On the *Entity mapping* pane, in *Impacted Assets* select **+ Add assets**.
+
+1. For *Entity* select **Device**, then **Hostname** and **Computer** for *Identifier and Column*.
+
+1. Select **Next**.
+
+1. On the *Summary* pane, select **Submit**, then select **Done**.
+
+1. In the Microsoft Defender navigation menu, scroll down and expand the **Investigation & Response** section.
+
+1. Expand the **Incidents & Alerts** section and select **Incidents**.
+
+1. In the *Incidents* pane, you should see the **PowerShell C2 Hunt** incident listed.
+
+### Task 2: Hunt with Microsoft Sentinel graph
+
+1. In the Microsoft Defender navigation menu, scroll down and expand the **Investigation & Response** section.
+
+1. Expand the **Hunting** section and select **Advanced hunting**.
+
+1. Select the *New graph* tab.
+
+1. Select **Search with Predefined scenarios**.
+
+1. On the *Search Predefined scenarios* pane, select the **Users with access to Sensitive data** Scenario.
+
+1. In the *Scenario inputs*, enter **sensitivestorage** for the *Target storage account*.
+
+1. Leave the filters with their default values and select **Run**.
+
+1. The graph will render. Review the results and identify any users with access to the sensitive storage account.
+
+1. Select the **Defender for Cloud** icon above the *sensitivestorage* Storage account.
+
+1. In the *sensitivestorage* details pane *General* tab, you can see that the *Discovery source* is **Defender for Cloud**.
+
+1. Explore the other tabs in the *sensitivestorage* details pane. The *All data* tab contains many details.
+
+    >**Note**: The *Attack paths* tab is only populated when there are multiple attacks.
+
+1. In the graph display you will see a *User account* node connected to the *sensitivestorage* Storage account with a gold crown icon. That is the *Critical* user with access to sensitive data.
+
+1. Selecting the Crown icon will open the *User account* details pane and display more information about critical users.
+
+1. Selecting the "+" icon on a node will expand the graph to show more relationships.
+
+1. Continuing expanding the graph, explore the different relationships and entities, and then proceed to the next task.
+
+### Task 3: Create a Microsoft Sentinel Hunt and Livestream
 
 1. Return to the *Microsoft Sentinel* section of the Defender portal, and select the **Hunting** page under the *Threat Management* area.
 
@@ -266,17 +319,17 @@ In this task, you'll create a hunting query, and create a Livestream.
 
 1. Review the number of results in the middle pane under the *Results* column.
 
-<!--- 1. Select the **View Results** button from the right pane. The KQL query will automatically run.
-
-1. Close the *Logs* window by selecting the **X** in the top-right of the window and select **OK** to discard the changes. --->
+    <!--- 1. Select the **View Results** button from the right pane. The KQL query will automatically run.
+    
+    1. Close the *Logs* window by selecting the **X** in the top-right of the window and select **OK** to discard the changes. --->
 
 1. Right-click the **PowerShell Hunt** query again and select **Add to livestream**. **Hint:** This also can be done by sliding right and selecting the ellipsis **(...)** at the end of the row to open a context menu.
 
 1. Review that the *Status* is now *Running*. This is running every 30 seconds in the background and you'll receive a notification in the Defender portal (bell icon) when a new result is found.
 
-<!--- 1. Select the **Bookmarks** tab in the middle pane.
-
-1. Select the bookmark you created from the results list. --->
+    <!--- 1. Select the **Bookmarks** tab in the middle pane.
+    
+    1. Select the bookmark you created from the results list. --->
 
 1. Right-click the **PowerShell Hunt** Livestream and select **Play**. **Hint:** You can also select the ellipsis **(...)** at the end of the row to open a context menu, or select **Play** in the right detail pane.
 
@@ -312,26 +365,82 @@ In this task, you'll create a hunting query, and create a Livestream.
 
 1. Scroll left to notice that the *Severity* column is now populated with the incident's data.
 
-### Task 2: Create an NRT query rule
+    <!--- ### Task 2: Create an NRT query rule
+    
+    In this task, instead of using a LiveStream, you'll create an NRT analytics query rule. NRT rules run every minute and lookback one minute. The benefit to NRT rules are they can use the alert and incident creation logic.
+    
+    1. Select the **Analytics** page under *Configuration* in Microsoft Sentinel. 
+    
+    1. Select the **Create** tab, then **NRT query rule**.
+    
+    1. This starts the "Analytics rule wizard". For the *General* tab type:
+    
+        |Setting|Value|
+        |---|---|
+        |Name|**NRT PowerShell Hunt**|
+        |Description|**NRT PowerShell Hunt**|
+        |Tactics|**Command and Control**|
+        |Severity|**High**|
+    
+    1. Select **Next: Set rule logic >** button.
+    
+    1. For the *Rule query* enter the following KQL statement:
+    
+        ```KQL
+        let lookback = 2d; 
+        SecurityEvent 
+        | where TimeGenerated >= ago(lookback) 
+        | where EventID == 4688 and Process =~ "powershell.exe"
+        | extend PwshParam = trim(@"[^/\\]*powershell(.exe)+" , CommandLine) 
+        | project TimeGenerated, Computer, SubjectUserName, PwshParam 
+        | summarize min(TimeGenerated), count() by Computer, SubjectUserName, PwshParam
+        ```
+    
+    1. Select **View query results >** to make sure your query doesn't have any errors.
+    
+    1. Close the *Logs* window by selecting the **X** in the top-right of the window and select **OK** to discard the changes. 
+    
+    1. Select **Test with current data** under *Results simulation*. Notice the expected number of *Alerts per day*.
+    
+    1. Under *Entity mapping* select:
+    
+        - For the *Entity type* drop-down list select **Host**.
+        - For the *Identifier* drop-down list select **HostName**.
+        - For the *Value* drop-down list select **Computer**.
+    
+    1. Scroll down and select **Next: Incident settings>** button.
+    
+    1. For the *Incident settings* tab, leave the default values and select the **Next: Automated Response >** button.
+    
+    1. On the *Automated response* tab, select the **Next: Review and create >** button.
+    
+    1. On the *Review and create* tab, select the **Save** button to create and save the new Scheduled Analytics rule.--->
 
-In this task, instead of using a LiveStream, you'll create an NRT analytics query rule. NRT rules run every minute and lookback one minute. The benefit to NRT rules are they can use the alert and incident creation logic.
+### Task 4: Create a Data lake KQL job
 
-1. Select the **Analytics** page under *Configuration* in Microsoft Sentinel. 
+In this task, you'll create a Data lake KQL job to look for a C2 attack.
 
-1. Select the **Create** tab, then **NRT query rule**.
+>**Note:**: The *KQL job* feature allows you to run KQL queries on your data lake and create a job that will continuously monitor for specific patterns or anomalies.
 
-1. This starts the "Analytics rule wizard". For the *General* tab type:
+1. Expand *Data lake exploration* in Microsoft Sentinel and select **Jobs**.
 
-    |Setting|Value|
-    |---|---|
-    |Name|**NRT PowerShell Hunt**|
-    |Description|**NRT PowerShell Hunt**|
-    |Tactics|**Command and Control**|
-    |Severity|**High**|
+1. Select the **Create a new KQL job** link.
 
-1. Select **Next: Set rule logic >** button.
+1. The *Create a new KQL job* wizard opens.
 
-1. For the *Rule query* enter the following KQL statement:
+    >**Note:** Review the *Consumption billing appplicable* message.
+
+1. Enter a name for your job in the *Job name* field.
+
+1. In the *Destination table in Analytics tier* section, slect the **defender** workspace from the *Destination workspace* drop-down menu.
+
+    >**Note:** The *_KQL_CL* is the custom log default appendice.
+
+1. Leave the *Create a new table* radio button selected, and enter **C2ATTACKHUNT** for for the new table name.
+
+1. Select the **Next** button.
+
+1. On the *Review the query* page, enter the following KQL query:
 
     ```KQL
     let lookback = 2d; 
@@ -340,64 +449,36 @@ In this task, instead of using a LiveStream, you'll create an NRT analytics quer
     | where EventID == 4688 and Process =~ "powershell.exe"
     | extend PwshParam = trim(@"[^/\\]*powershell(.exe)+" , CommandLine) 
     | project TimeGenerated, Computer, SubjectUserName, PwshParam 
-    | summarize min(TimeGenerated), count() by Computer, SubjectUserName, PwshParam
+    | summarize min(TimeGenerated), count() by Computer, SubjectUserName, PwshParam    
     ```
 
-1. Select **View query results >** to make sure your query doesn't have any errors.
+1. On the *Schedule the job* page, leave the *Job frequency* radio button selected to **One time**, and select the **Next** button.
 
-1. Close the *Logs* window by selecting the **X** in the top-right of the window and select **OK** to discard the changes. 
+1. On the *Summary, Review and finish to run job as scheduled* page, review the job settings and select the **Submit** button.
 
-1. Select **Test with current data** under *Results simulation*. Notice the expected number of *Alerts per day*.
+1. On the *Summary, Job successfully scheduled* page, select the **Done** button.
 
-1. Under *Entity mapping* select:
+1. On the *Jobs* page, you can see the new job listed, and the *Last run status* shows the job as **In progress**.
 
-    - For the *Entity type* drop-down list select **Host**.
-    - For the *Identifier* drop-down list select **HostName**.
-    - For the *Value* drop-down list select **Computer**.
+    >**Note:** It may take up to 10 minutes for the job to complete.
 
-1. Scroll down and select **Next: Incident settings>** button.
+1. Select the refresh icon near the top-left of the *Jobs* page to refresh the *Last run status*.
 
-1. For the *Incident settings* tab, leave the default values and select the **Next: Automated Response >** button.
+1. When the *Last run status* shows **Succeeded**, select the job and the job details page opens.
 
-1. On the *Automated response* tab, select the **Next: Review and create >** button.
+1. You can view the history of the job runs and other details.
 
-1. On the *Review and create* tab, select the **Save** button to create and save the new Scheduled Analytics rule.
+1. Select the *Destination table* link for **C2ATTACKHUNT_KQL_CL**.
 
-### Task 3: Create a Search job
+1. This opens the *Advanced hunting* page with the **C2ATTACKHUNT_KQL_CL** table populated in the *New query* form. If the table name has a red rippled underline, it means the table is unknown and it may take several minutes to be updated.
 
-In this task, you'll use a Search job to look for a C2.
+    >**Note:** After the table is known to *Advanced hunting*, you can modify the query as needed to refine your search.
 
-**Note:** The *Restore* operation incurs costs that can deplete your Azure subscription credits. For that reason, you won't be performing the restore operation in this lab. However, you can follow the steps below to perform the restore operation in your own environment.
+1. Select the **Run query** button to execute the query and view the results.
 
-1. Select the **Search & restore** page under *Data lake exploration* in Microsoft Sentinel.
+1. Review the results to identify any potential C2 activity.
 
-1. In the search box, enter **reg.exe** and then select **Start**.
-
-1. A new browser window opens to the Azure portal Log Analytics workspace *Logs* page associated with Microsoft Sentinel.
-
-1. Select *KQL mode* from the drop-down menu in the top right of the window.
-
-1. Your query is populated and ready to run. Select the ellipsis icon **(...)** from the top right and then toggle the **Search job**.
-
-1. In the *Run a search job* pop-up window, for *New table name* enter **Reg_Exe_Search_Job**.
-
-1. Select the **Run search job** button.
-
-1. The search job creates a new table (Reg_Exe_Search_Job_SRCH) with your results as soon as they arrive. 
-
-1. Close the *Logs* window by selecting the **X** in the top-right of the window and select **OK** to discard the changes.
-
-1. The results can be consulted from the *Saved Searches* tab on the *Search & restore* **Search** page. **Hint:** Select *Refresh* to see the latest results.
-
-1. Select the **Restoration** tab from the command bar and then the **Restore** button.
-
-1. Under *Select a table to restore*, search for and select **SecurityEvent**.
-
-1. Review the options available and then select the **Cancel** button.
-
-    >**Note:** If you were running the job, the restore would run for a couple of minutes and your data would be available in a new table.
-
-### Task 4: Create a hunt that combines multiple queries into a MITRE tactic
+### Task 5: Create a hunt that combines multiple queries into a MITRE tactic
 
 1. The MITRE ATT&CK map helps you identify specific gaps in your detection coverage. Use predefined hunting queries for specific MITRE ATT&CK techniques as a starting point to develop new detection logic.
 
