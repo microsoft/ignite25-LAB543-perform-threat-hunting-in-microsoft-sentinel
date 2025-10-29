@@ -21,8 +21,9 @@ By the end of this session, learners will be able to:
 - Ingest and analyze data in Sentinel Data Lake with Kusto Query Language (KQL)
 - Hunt for threats using Microsoft Sentinel Advanced Hunting
 - Hunt for threats using Data lake graph
+- Create a Microsoft Sentinel Sentinel Hunt and Livestream
 - Hunt for threats using MITRE ATT&CK
-- Use KQL jobs to analyze large datasets in Sentinel Data Lake
+- Use Data lake KQL jobs
 
 ### 💻 Technologies Used
 
