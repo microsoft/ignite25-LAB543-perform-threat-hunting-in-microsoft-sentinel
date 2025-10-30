@@ -280,8 +280,8 @@ In this task, you'll create a hunting query, and create a Livestream.
 
 1. Continuing expanding the graph, explore the different relationships and entities, and then proceed to the next task.
 
-### Task 3: Create a Microsoft Sentinel Hunt and Livestream
-
+<!--- ### Task 3: Create a Microsoft Sentinel Hunt and Livestream
+ 
 1. Return to the *Microsoft Sentinel* section of the Defender portal, and select the **Hunting** page under the *Threat Management* area.
 
 1. Select the **Queries** tab and then **+ New query** from the command bar.
@@ -321,7 +321,7 @@ In this task, you'll create a hunting query, and create a Livestream.
 
     <!--- 1. Select the **View Results** button from the right pane. The KQL query will automatically run.
     
-    1. Close the *Logs* window by selecting the **X** in the top-right of the window and select **OK** to discard the changes. --->
+    1. Close the *Logs* window by selecting the **X** in the top-right of the window and select **OK** to discard the changes. 
 
 1. Right-click the **PowerShell Hunt** query again and select **Add to livestream**. **Hint:** This also can be done by sliding right and selecting the ellipsis **(...)** at the end of the row to open a context menu.
 
@@ -329,7 +329,7 @@ In this task, you'll create a hunting query, and create a Livestream.
 
     <!--- 1. Select the **Bookmarks** tab in the middle pane.
     
-    1. Select the bookmark you created from the results list. --->
+    1. Select the bookmark you created from the results list. 
 
 1. Right-click the **PowerShell Hunt** Livestream and select **Play**. **Hint:** You can also select the ellipsis **(...)** at the end of the row to open a context menu, or select **Play** in the right detail pane.
 
@@ -416,7 +416,7 @@ In this task, you'll create a hunting query, and create a Livestream.
     
     1. On the *Review and create* tab, select the **Save** button to create and save the new Scheduled Analytics rule.--->
 
-### Task 4: Create a Data lake KQL job
+### Task 3: Create a Data lake KQL job
 
 In this task, you'll create a Data lake KQL job to look for a C2 attack.
 
