@@ -464,6 +464,8 @@ In this task, you'll create a Data lake KQL job to look for a C2 attack.
 
 1. Select the refresh icon near the top-left of the *Jobs* page to refresh the *Last run status*.
 
+    >**Tip:** While waiting for the new job to execute, click on any existing KQL job that has a **Succeeded** *Last run status*. Review the details, such as name, repeat frequency, date range, destination table, and the KQL query. Select view history and review the past runs. Once done, return to the job list and hit refresh.
+
 1. When the *Last run status* shows **Succeeded**, select the job and the job details page opens.
 
 1. You can view the history of the job runs and other details.
