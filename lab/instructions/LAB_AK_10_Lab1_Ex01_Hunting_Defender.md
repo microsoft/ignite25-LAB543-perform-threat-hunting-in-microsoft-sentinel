@@ -533,4 +533,17 @@ In this task, you'll create a Data lake KQL job to look for a C2 attack.
     - Add another filter.
     - Set the second filter to have techniques: T1098.
 
-## You have completed this exercise
+---
+
+## Share your feedback
+
+Thank you for completing **LAB543 – Perform Threat Hunting in Microsoft Sentinel**.
+
+Your feedback helps improve future labs and events.
+
+Scan the QR codes at [https://aka.ms/IgniteLab543feedback](https://assetsmanagement952e.blob.core.windows.net/ignite25assets/feedbackslides/LAB543-repo.png), or use the links below:
+
+- On the Ignite page: [Give feedback](https://aka.ms/ignite25-feedback)
+- Lab content issues: [Open an issue in the repo](https://aka.ms/ignite25-LAB543)
+
+## You have completed this lab
