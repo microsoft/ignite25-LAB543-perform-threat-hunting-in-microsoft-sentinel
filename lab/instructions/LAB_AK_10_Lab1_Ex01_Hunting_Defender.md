@@ -537,7 +537,7 @@ In this task, you'll create a Data lake KQL job to look for a C2 attack.
 
 This *bonus* task explores Notebooks in Microsoft Sentinel Data lake. You will be using Visual Studio Code to access Notebooks, and installing a number of Visual Studio Code extensions.
 
->**Note:** Visual Studio Code is already installed on the lab VM. Prior experience with Visual Studio Code, Jupyter Notebooks and Python codingis recommended.
+>**Note:** Visual Studio Code is already installed on the lab VM. Prior experience with Visual Studio Code, Jupyter Notebooks and Python coding is recommended.
 
 1. Expand *Data lake exploration* in Microsoft Sentinel and select **Notebooks**.
 
