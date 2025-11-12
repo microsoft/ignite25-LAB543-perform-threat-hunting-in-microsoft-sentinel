@@ -563,13 +563,13 @@ This *bonus* task explores Notebooks in Microsoft Sentinel Data lake. You will b
 
 1. Within the left menu bar, select the Extensions icon.
 
-1. Within the search bar of Extensions, search for 'Python', and select **Install**.
+1. Within the search bar of Extensions, search for *Python*, and select **Install**.
 
-1. Within the search bar of Extensions, search for 'Jupyter Notebooks', If not already installed, select **Install**.
+1. Within the search bar of Extensions, search for *Jupyter Notebooks*, If not already installed, select **Install**.
 
-1. Within the search bar of Extensions, search for 'GitHub Copilot', and select **Install**.
+1. Within the search bar of Extensions, search for *GitHub Copilot*, and select **Install**.
 
-1. Within the search bar of Extensions, search for 'Microsoft Sentinel', and select **Install**.
+1. Within the search bar of Extensions, search for *Microsoft Sentinel*, and select **Install**.
 
 1. On your keyboard, select the ctrl+shift+p keys to open the command options within the top bar.
 
